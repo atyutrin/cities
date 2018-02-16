@@ -7,9 +7,9 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-backend',
+    'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'backend\controllers',
+    'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
@@ -20,11 +20,13 @@ return [
             ],
         ],
         'response' => [
-            'json' => [
-                'class' => 'yii\web\JsonResponseFormatter',
-                'prettyPrint' => YII_DEBUG,
-                'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
-            ],
+            'formatters' => [
+                'json' => [
+                    'class' => 'yii\web\JsonResponseFormatter',
+                    'prettyPrint' => YII_DEBUG,
+                    'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+                ]
+            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -40,14 +42,17 @@ return [
                 ],
             ],
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'site/index',
+                'auth' => 'site/login',
+                '<_c:[\w-]+>' => '<_c>/index',
+                '<_c:[\w-]+>/<id:\d+>' => '<_c>/view',
+                '<_c:[\w-]+>/<id:\d+>/<_a:[\w-]+>' => '<_c>/</_a>'
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
