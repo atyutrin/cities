@@ -55,10 +55,11 @@ class Country extends \yii\db\ActiveRecord
     /**
      * @return array
      */
-    public static function list()
+    public static function listNames()
     {
         $countries = self::find()->all();
         $data = yii\helpers\ArrayHelper::map($countries, 'id', 'name');
         return $data;
     }
+
 }

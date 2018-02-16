@@ -18,7 +18,7 @@ use common\models\Country;
 
 
     <?= $form->field($model, 'country_id')->widget(Select2::className(),[
-            'data' => Country::list(),
+            'data' => Country::listNames(),
             'options' => ['placeholder' => 'Select country ...'],
     ]);
     ?>
