@@ -12,6 +12,8 @@ use common\models\Region;
  */
 class RegionSearch extends Region
 {
+    public $country;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class RegionSearch extends Region
     {
         return [
             [['id', 'country_id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'country'], 'safe'],
         ];
     }
 
@@ -44,10 +46,16 @@ class RegionSearch extends Region
         $query = Region::find();
 
         // add conditions that should always apply here
+        $query->joinWith(['country']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['country'] = [
+            'asc' => ['country.name' => SORT_ASC],
+            'desc' => ['country.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -63,7 +71,10 @@ class RegionSearch extends Region
             'country_id' => $this->country_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'region.name', $this->name]);
+
+        $query->andFilterWhere(['like', 'country.name', $this->country]);
+
 
         return $dataProvider;
     }

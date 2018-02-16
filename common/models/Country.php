@@ -51,4 +51,14 @@ class Country extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Region::className(), ['country_id' => 'id']);
     }
+
+    /**
+     * @return array
+     */
+    public static function list()
+    {
+        $countries = self::find()->all();
+        $data = yii\helpers\ArrayHelper::map($countries, 'id', 'name');
+        return $data;
+    }
 }

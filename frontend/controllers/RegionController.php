@@ -36,6 +36,7 @@ class RegionController extends Controller
     public function actionIndex()
     {
         $searchModel = new RegionSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
