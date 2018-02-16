@@ -68,7 +68,9 @@ class Region extends \yii\db\ActiveRecord
 
     public static function listWithCountry()
     {
-        $countries = self::find()->joinWith('country')->all();
+        $countries = self::find()->select(['region.id', 'CONCAT(region.name, ". ", country.name) as name'])
+                                  ->joinWith('country')
+                                  ->all();
         $data = yii\helpers\ArrayHelper::map($countries, 'id', 'name');
         return $data;
     }

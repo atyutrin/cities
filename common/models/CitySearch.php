@@ -12,6 +12,9 @@ use common\models\City;
  */
 class CitySearch extends City
 {
+    public $region;
+    public $country;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,17 @@ class CitySearch extends City
     {
         return [
             [['id', 'region_id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'region', 'country'], 'safe'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'region_id' => 'Region ID',
+            'region.name' => 'Region'
         ];
     }
 
@@ -41,13 +54,23 @@ class CitySearch extends City
      */
     public function search($params)
     {
-        $query = City::find();
+        $query = City::find()->innerJoin('region', 'region.id = city.region_id')->innerJoin('country', 'country.id = region.country_id');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['region'] = [
+            'asc' => ['region.name' => SORT_ASC],
+            'desc' => ['region.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['country'] = [
+            'asc' => ['country.name' => SORT_ASC],
+            'desc' => ['country.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -60,10 +83,13 @@ class CitySearch extends City
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'region_id' => $this->region_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+
+        $query->andFilterWhere(['like', 'region.name', $this->region]);
+
+        $query->andFilterWhere(['like', 'country.name', $this->country]);
 
         return $dataProvider;
     }
