@@ -1,60 +1,28 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
-    <br>
-</p>
+**Задание 1**
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+Необходимо написать RestFull интерфейс для получения, обновления, добавления городов в базу MySQL. 
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+1.	Предусмотреть HTTP авторизацию
+2.	Получить список городов, как дополнительные наборы данных иметь страну и регион. Пример: {id: 1, name: San Francisco, country: {id: 1, name: USA}, state/region: {....}} 
+3.	Метод для обновления города
+4.	Метод для добавления города. 
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+Необходимо чтобы методы были реализованы согласно спецификации REST FULL. 
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+Extra: показать 2 способа реализации REST API на YII и объяснить плюсы минусы каждого. 
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
 
-DIRECTORY STRUCTURE
--------------------
+**Задание 2**
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+С использованием Bootstrap и YII2 реализовать административный интерфейс для редактирования и добавления городов. Вход в административную зону должен быть через авторизацию на web форме.
+
+Для реализации этой задачи использовать CRUD YII фреймворка.   
+
+
+В обоих заданиях (в рамках одного приложения) должны использоваться единые модели и настроены валидации согласно правилам YII. 
+
+Город в рамках страны и региона уникален, однако в другом регионе той же страны он может дублироваться, необходимо сделать кастомные правила валидации на такой случай. 
+
+Пример:
+пос Быково, Московская область, Россия
+пос Быково, Волгоградская область, Россия
