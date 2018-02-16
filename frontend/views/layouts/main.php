@@ -42,6 +42,9 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Countries', 'url' => ['/country']];
+        $menuItems[] = ['label' => 'Regions', 'url' => ['/region']];
+        $menuItems[] = ['label' => 'Cities', 'url' => ['/city']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
