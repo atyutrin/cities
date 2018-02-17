@@ -1,18 +1,19 @@
 <?php
 namespace api\controllers;
 
+use common\models\City;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\rest\ActiveController;
 
-
 /**
  * Site controller
  */
-class CountryController extends ActiveController
+class CityController extends ActiveController
 {
-    public $modelClass = 'common\models\Country';
+    public $modelClass = 'common\models\City';
 
     public function behaviors()
     {
@@ -35,7 +36,6 @@ class CountryController extends ActiveController
 
         return $behaviors;
     }
-
 
 
 }

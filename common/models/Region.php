@@ -74,4 +74,11 @@ class Region extends \yii\db\ActiveRecord
         $data = yii\helpers\ArrayHelper::map($countries, 'id', 'name');
         return $data;
     }
+
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['country_id']);
+        return $fields;
+    }
 }

@@ -56,4 +56,21 @@ class City extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Region::className(), ['id' => 'region_id']);
     }
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::className(), ['id' => 'country_id'])
+            ->viaTable('region', ['id' => 'region_id']);
+    }
+
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['region_id']);
+        $fields[]='country';
+        $fields[]='region';
+
+        return $fields;
+    }
+
 }

@@ -6,13 +6,9 @@ use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\rest\ActiveController;
 
-
-/**
- * Site controller
- */
-class CountryController extends ActiveController
+class RegionController extends ActiveController
 {
-    public $modelClass = 'common\models\Country';
+    public $modelClass = 'common\models\Region';
 
     public function behaviors()
     {
@@ -35,7 +31,5 @@ class CountryController extends ActiveController
 
         return $behaviors;
     }
-
-
 
 }
