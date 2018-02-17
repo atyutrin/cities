@@ -49,9 +49,12 @@ return [
             'rules' => [
                 '' => 'site/index',
                 'auth' => 'site/login',
-                '<_c:[\w-]+>' => '<_c>/index',
-                '<_c:[\w-]+>/<id:\d+>' => '<_c>/view',
-                '<_c:[\w-]+>/<id:\d+>/<_a:[\w-]+>' => '<_c>/</_a>'
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['city','region','country'],
+                    'pluralize' => false
+                ]
+
             ],
         ],
     ],

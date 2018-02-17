@@ -1,8 +1,6 @@
 <?php
 namespace api\controllers;
 
-use common\models\City;
-use Yii;
 use yii\filters\AccessControl;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
